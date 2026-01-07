@@ -10,7 +10,9 @@ const upgrades = {
     pickaxe: { cost: 50, baseRate: 1, count: 0, level: 0, costMultiplier: 1.5 },
     soldier: { cost: 100, baseRate: 10, count: 0, level: 0, costMultiplier: 1.2 },
     tank: { cost: 500, baseRate: 50, count: 0, level: 0, costMultiplier: 1.25 },
-    plane: { cost: 2000, baseRate: 200, count: 0, level: 0, costMultiplier: 1.3 }
+    plane: { cost: 2000, baseRate: 200, count: 0, level: 0, costMultiplier: 1.3 },
+    commandCenter: { cost: 5000, baseRate: 500, count: 0, level: 0, costMultiplier: 1.35 },
+    militaryBase: { cost: 10000, baseRate: 1000, count: 0, level: 0, costMultiplier: 1.4 },
 };
 
 const ACHIEVEMENT_GOALS = [
@@ -147,5 +149,6 @@ function loadGame() {
         updateDisplay();
     }
 }
+
 
 window.onload = loadGame;
