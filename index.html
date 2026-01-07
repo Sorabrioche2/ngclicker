@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NationGlory Clicker</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <div id="notification">Notification !</div>
+
+    <div class="container">
+        <div id="game">
+            <h1>NationGlory</h1>
+            <div>Ressources : <span id="score">0</span></div>
+            <div>Gain/clic : <span id="clickPwr">1</span></div>
+            <div>Gain/s : <span id="rate">0</span></div>
+            <div>XP : <span id="xp">0</span></div>
+            <div id="progress"><div id="progress-bar"></div></div>
+            <button id="clicker">Miner !</button>
+        </div>
+
+        <div id="tabs">
+            <div class="tab active" data-tab="statsTab">Stats</div>
+            <div class="tab" data-tab="achievementsTab">Succès</div>
+            <div class="tab" data-tab="settingsTab">Options</div>
+        </div>
+
+        <div id="statsTab" class="tab-content active">
+            <p>XP : <span id="xpStat">0</span></p>
+            <p>Clics totaux : <span id="totalClicks">0</span></p>
+            <p>Total miné : <span id="totalMined">0</span></p>
+            <canvas id="statsChart"></canvas>
+        </div>
+
+        <div id="achievementsTab" class="tab-content">
+            <h2>Succès Débloqués</h2>
+            <ul id="achievementsList"></ul>
+        </div>
+
+        <div id="settingsTab" class="tab-content">
+            <button class="btn-opt" id="saveGameButton">Sauvegarder</button>
+            <button class="btn-opt" id="loadGameButton">Charger</button>
+            <button class="btn-opt reset" id="resetGameButton">Réinitialiser</button>
+        </div>
+
+        <div id="shop">
+            <h2>Boutique</h2>
+            <button class="upgrade" id="pickaxe">
+                Pioche onyx (Coût: <span id="pickaxeCost">50</span>)
+                <span class="upgrade-info">Clic +1 (Niveau: <span id="pickaxeLevel">0</span>)</span>
+            </button>
+            <button class="upgrade" id="soldier">
+                Armure Diamant (Coût: <span id="soldierCost">100</span>)
+                <span class="upgrade-info">+10/s (Niveau: <span id="soldierLevel">0</span>)</span>
+            </button>
+            <button class="upgrade" id="tank">
+                Prototype Clair (Coût: <span id="tankCost">500</span>)
+                <span class="upgrade-info">+50/s (Niveau: <span id="tankLevel">0</span>)</span>
+            </button>
+            <button class="upgrade" id="plane">
+                Prototype Sombre (Coût: <span id="planeCost">2000</span>)
+                <span class="upgrade-info">+200/s (Niveau: <span id="planeLevel">0</span>)</span>
+            </button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
