@@ -1,4 +1,4 @@
-<!DOCTYPE html><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -26,8 +26,17 @@
             <div class="tab active" data-tab="statsTab">Stats</div>
             <div class="tab" data-tab="achievementsTab">Succès</div>
             <div class="tab" data-tab="settingsTab">Options</div>
+            <div class="tab" data-tab="casinoTab">Casino</div>
         </div>
-
+        <div id="casinoTab" class="tab-content">
+            <h2>🎰 Casino NationGlory</h2>
+            <p>Misez vos ressources pour tenter de doubler !</p>
+            <div class="casino-controls">
+           <input type="number" id="betAmount" placeholder="Montant à miser" min="1">
+        <button class="btn-opt" id="gambleButton">Parier (50% de chance)</button>
+    </div>
+    <p id="casinoResult"></p>
+</div>
         <div id="statsTab" class="tab-content active">
             <p>XP : <span id="xpStat">0</span></p>
             <p>Clics totaux : <span id="totalClicks">0</span></p>
@@ -72,6 +81,7 @@
                 Armur solidetech (Coût: <span id="militaryBaseCost">10000</span>)
                 <span class="upgrade-info">1000/s (Niveau: <span id="militaryBaseLevel">0</span>)</span>
             </button>
+            <div class="tab" data-tab="casinoTab">Casino</div>
 
         </div>
     </div>
