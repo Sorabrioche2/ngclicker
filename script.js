@@ -137,9 +137,38 @@ function loadGame() {
         updateDisplay();
     }
 }
+document.getElementById("gambleButton").addEventListener("click", () => {
+    const betInput = document.getElementById("betAmount");
+    const bet = Math.floor(parseInt(betInput.value));
+    const resultDisplay = document.getElementById("casinoResult");
 
+    if (isNaN(bet) || bet <= 0) {
+        resultDisplay.textContent = "❌ Entre un montant valide !";
+        resultDisplay.style.color = "orange";
+        return;
+    }
+
+    if (score < bet) {
+        resultDisplay.textContent = "❌ Tu n'as pas assez de ressources !";
+        resultDisplay.style.color = "red";
+        return;
+    }
+
+    score -= bet; 
+    const win = Math.random() < 0.5;
+
+    if (win) {
+        const gain = bet * 2;
+        score += gain;
+        totalMined += bet; 
+        resultDisplay.textContent = `GAGNÉ ! Tu remportes ${gain} ressources !`;
+        resultDisplay.style.color = "#4CAF50";
+        showNotification("Jackpot !");
+    } else {
+        resultDisplay.textContent = `PERDU ! Tu as perdu tes ${bet} ressources.`;
+        resultDisplay.style.color = "#f44336";
+    }
+
+    updateDisplay(); 
+});
 window.onload = loadGame;
-
-
-window.onload = loadGame;
-
