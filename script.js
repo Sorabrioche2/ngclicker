@@ -1,4 +1,3 @@
-// --- Données du Jeu ---
 let score = 0;
 let ratePerSecond = 0;
 let clickPower = 1;
@@ -10,9 +9,9 @@ const upgrades = {
     pickaxe: { cost: 50, baseRate: 1, count: 0, level: 0, costMultiplier: 1.5 },
     soldier: { cost: 100, baseRate: 10, count: 0, level: 0, costMultiplier: 1.2 },
     tank: { cost: 500, baseRate: 50, count: 0, level: 0, costMultiplier: 1.25 },
-    plane: { cost: 2000, baseRate: 200, count: 0, level: 0, costMultiplier: 1.3 },
+    plane: { cost: 2000, baseRate: 200, count: 0, level: 0, costMultiplier: 1.3 }, // Virgule ajoutée ici
     commandCenter: { cost: 5000, baseRate: 500, count: 0, level: 0, costMultiplier: 1.35 },
-    militaryBase: { cost: 10000, baseRate: 1000, count: 0, level: 0, costMultiplier: 1.4 },
+    militaryBase: { cost: 10000, baseRate: 1000, count: 0, level: 0, costMultiplier: 1.4 } // Virgule supprimée ici (optionnel mais propre)
 };
 
 const ACHIEVEMENT_GOALS = [
@@ -20,7 +19,6 @@ const ACHIEVEMENT_GOALS = [
     { id: 2, name: "Clavier Chaud", condition: () => totalClicks >= 50, awarded: false, description: "Cliquer 50 fois." }
 ];
 
-// --- Éléments du DOM ---
 const scoreDisplay = document.getElementById("score");
 const rateDisplay = document.getElementById("rate");
 const clickPowerDisplay = document.getElementById("clickPwr");
@@ -28,7 +26,6 @@ const xpDisplay = document.getElementById("xp");
 const progressBar = document.getElementById("progress-bar");
 const achievementsList = document.getElementById("achievementsList");
 
-// --- Graphique ---
 const ctx = document.getElementById('statsChart').getContext('2d');
 let statsChart = new Chart(ctx, {
     type: 'line',
@@ -36,7 +33,6 @@ let statsChart = new Chart(ctx, {
     options: { responsive: true, scales: { x: { display: false } } }
 });
 
-// --- Fonctions Principales ---
 function updateDisplay() {
     scoreDisplay.textContent = Math.floor(score);
     rateDisplay.textContent = ratePerSecond;
@@ -48,7 +44,6 @@ function updateDisplay() {
     
     progressBar.style.width = Math.min((score / 10000) * 100, 100) + "%";
 
-    // Boutons boutique
     for (let key in upgrades) {
         const up = upgrades[key];
         document.getElementById(`${key}Cost`).textContent = Math.round(up.cost);
@@ -77,7 +72,6 @@ function checkAchievements() {
     });
 }
 
-// --- Interactions ---
 document.getElementById("clicker").addEventListener("click", () => {
     score += clickPower;
     totalMined += clickPower;
@@ -98,12 +92,10 @@ function buyUpgrade(key) {
     }
 }
 
-// Installation des écouteurs sur les boutons shop
 Object.keys(upgrades).forEach(key => {
     document.getElementById(key).addEventListener("click", () => buyUpgrade(key));
 });
 
-// Gestion des onglets
 document.querySelectorAll(".tab").forEach(tab => {
     tab.addEventListener("click", () => {
         document.querySelectorAll(".tab, .tab-content").forEach(el => el.classList.remove("active"));
@@ -112,13 +104,11 @@ document.querySelectorAll(".tab").forEach(tab => {
     });
 });
 
-// --- Boucle de jeu (1 seconde) ---
 setInterval(() => {
     score += ratePerSecond;
     totalMined += ratePerSecond;
     updateDisplay();
     
-    // Graphique
     statsChart.data.labels.push("");
     statsChart.data.datasets[0].data.push(score);
     if(statsChart.data.labels.length > 15) {
@@ -128,14 +118,12 @@ setInterval(() => {
     statsChart.update();
 }, 1000);
 
-// --- Sauvegarde ---
 document.getElementById("saveGameButton").addEventListener("click", () => {
     const save = { score, totalMined, totalClicks, xp, clickPower, ratePerSecond, upgrades };
     localStorage.setItem("ng_clicker_save", JSON.stringify(save));
     showNotification("Partie sauvegardée !");
 });
 
-// --- Chargement ---
 function loadGame() {
     const saved = JSON.parse(localStorage.getItem("ng_clicker_save"));
     if (saved) {
@@ -150,5 +138,8 @@ function loadGame() {
     }
 }
 
+window.onload = loadGame;
+
 
 window.onload = loadGame;
+
