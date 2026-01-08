@@ -10,7 +10,6 @@ body {
     min-height: 100vh;
     margin: 0;
     overflow-x: hidden;
-    /* On laisse de la place à droite pour le shop fixe */
     padding-right: 280px; 
 }
 
@@ -71,7 +70,7 @@ body {
 .tab-content { 
     display: none; 
     width: 100%; 
-    min-height: 300px;
+    min-height: 350px;
     background: rgba(0,0,0,0.2);
     padding: 20px;
     border-radius: 10px;
@@ -109,7 +108,7 @@ body {
     transition: 0.2s;
 }
 
-.upgrade:hover:not(:disabled) { background: #45a049; filter: brightness(1.1); }
+.upgrade:hover:not(:disabled) { background: #45a049; }
 
 .upgrade:disabled { 
     background-color: #555; 
@@ -119,29 +118,29 @@ body {
 
 .upgrade-info { font-size: 11px; color: #eee; margin-top: 4px; font-style: italic; }
 
-/* --- Casino et Machine à Sous --- */
-#casinoTab {
-    border: 2px dashed gold;
-}
-
-.casino-controls input {
+/* --- Casino Global --- */
+#casinoTab { border: 2px dashed gold; }
+.casino-section { margin-bottom: 25px; border-bottom: 1px solid #555; padding-bottom: 20px; }
+.casino-controls input, .casino-controls select {
     padding: 10px;
     border-radius: 5px;
     border: none;
-    margin-right: 5px;
-    width: 120px;
+    margin-bottom: 10px;
+    background: #fff;
+    color: #000;
 }
 
+/* --- Machine à Sous --- */
 #slot-machine {
     background: #1a1a1a;
     border: 4px solid #ffd700;
     border-radius: 15px;
     padding: 20px;
-    margin: 20px auto;
+    margin: 15px auto;
     width: fit-content;
-    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3), inset 0 0 10px #000;
     display: flex;
     gap: 15px;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
 }
 
 #slot-machine span {
@@ -154,33 +153,130 @@ body {
     font-size: 35px;
     border-radius: 8px;
     text-align: center;
-    border: 2px solid #555;
-    box-shadow: inset 0 4px 5px rgba(0,0,0,0.5);
 }
 
 .spinning {
     animation: shake 0.1s infinite;
     filter: blur(1px);
-    opacity: 0.8;
 }
 
 @keyframes shake {
     0% { transform: translateY(-2px); }
     50% { transform: translateY(2px); }
-    100% { transform: translateY(-2px); }
 }
 
-#slot-trigger {
-    background: linear-gradient(180deg, #ff4e50, #f9d423);
-    color: #000;
-    font-weight: bold;
-    border: none;
-    padding: 12px 30px;
-    border-radius: 50px;
-    cursor: pointer;
-    box-shadow: 0 4px #b8860b;
-    margin-top: 10px;
+/* --- Blackjack Visuel --- */
+.bj-zone {
+    background: #004d40;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 10px 0;
+    border: 2px solid #00695c;
+    box-shadow: inset 0 0 15px rgba(0,0,0,0.5);
+    min-height: 100px;
 }
+
+.card {
+    display: inline-block;
+    width: 50px;
+    height: 75px;
+    background: #ffffff;
+    color: #1a1a1a;
+    border-radius: 6px;
+    margin: 5px;
+    line-height: 75px;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.4);
+    border: 1px solid #ccc;
+    vertical-align: middle;
+}
+
+.card.back {
+    background: #c0392b;
+    color: white;
+    border: 2px solid #ecf0f1;
+}
+
+.red-card {
+    color: #e74c3c !important;
+}
+
+#player-score, #dealer-score {
+    font-weight: bold;
+    color: gold;
+    background: rgba(0,0,0,0.3);
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+/* --- Roue de la Fortune --- */
+.wheel-container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 20px auto;
+}
+
+.wheel {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 5px solid #ffd700;
+    position: relative;
+    overflow: hidden;
+    transition: transform 4s cubic-bezier(0.15, 0, 0.15, 1);
+    background: conic-gradient(
+        #f44336 0deg 45deg, 
+        #2196f3 45deg 90deg, 
+        #4caf50 90deg 135deg, 
+        #ffeb3b 135deg 180deg,
+        #f44336 180deg 225deg,
+        #2196f3 225deg 270deg, 
+        #4caf50 270deg 315deg,
+        #ffeb3b 315deg 360deg
+    );
+}
+
+.wheel-pointer {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 25px solid gold;
+    z-index: 10;
+}
+
+/* --- Roulette (NOUVEAU) --- */
+#roulette-result {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-top: 15px;
+    min-height: 50px;
+}
+
+.num-ball {
+    display: inline-block;
+    width: 45px;
+    height: 45px;
+    line-height: 45px;
+    border-radius: 50%;
+    color: white;
+    margin-left: 10px;
+    border: 2px solid #fff;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    font-weight: bold;
+    vertical-align: middle;
+}
+
+.bg-red { background-color: #e74c3c; }
+.bg-black { background-color: #2c3e50; }
+.bg-green { background-color: #27ae60; }
 
 /* --- Barre de Progression et Notifs --- */
 #progress { width: 100%; height: 12px; background: #222; border-radius: 6px; margin: 15px 0; overflow: hidden; }
@@ -188,7 +284,7 @@ body {
 
 #notification {
     position: fixed; 
-    top: 20px; 
+    top: -50px; 
     left: 50%;
     transform: translateX(-50%);
     background: #4CAF50; 
@@ -197,19 +293,16 @@ body {
     opacity: 0; 
     transition: 0.5s; 
     z-index: 100;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    pointer-events: none;
 }
-#notification.show { opacity: 1; top: 40px; }
+#notification.show { opacity: 1; top: 20px; }
 
-/* --- Options --- */
-.btn-opt { padding: 10px 20px; margin: 5px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
-.btn-opt.reset { background: #f44336; color: white; margin-top: 20px; }
-.btn-opt.reset:hover { background: #d32f2f; }
+/* --- Boutons Génériques --- */
+.btn-opt { padding: 10px 20px; margin: 5px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; color: white; background: #555; transition: 0.3s; }
+.btn-opt:hover { filter: brightness(1.2); }
+.btn-opt.reset { background: #f44336; margin-top: 20px; }
 
-/* --- Responsive (Mobile) --- */
+/* --- Responsive --- */
 @media (max-width: 900px) {
-    body { padding-right: 0; flex-direction: column; height: auto; }
+    body { padding-right: 0; flex-direction: column; }
     #shop { position: relative; width: 100%; height: auto; border-left: none; border-top: 3px solid #444; }
-    .tab-content { width: 90%; }
 }
