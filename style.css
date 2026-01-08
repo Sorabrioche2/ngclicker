@@ -1,4 +1,5 @@
-/* Base */body {
+/* --- Base et Mise en page --- */
+body {
     text-align: center;
     font-family: 'Arial', sans-serif;
     background-color: #2f2f2f;
@@ -6,9 +7,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     margin: 0;
     overflow-x: hidden;
+    /* On laisse de la place à droite pour le shop fixe */
+    padding-right: 280px; 
 }
 
 .container {
@@ -16,13 +19,16 @@
     flex-direction: column;
     gap: 20px;
     align-items: center;
+    width: 100%;
+    max-width: 600px;
 }
 
+/* --- Zone de Jeu Centrale --- */
 #game {
     background-color: #444;
     padding: 30px;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
     width: 320px;
 }
 
@@ -35,51 +41,175 @@
     color: white;
     border: none;
     border-radius: 12px;
-    transition: transform 0.1s;
+    transition: transform 0.1s, background-color 0.2s;
+    font-weight: bold;
+    box-shadow: 0 4px #1565C0;
 }
 
-#clicker:active { transform: scale(0.95); }
+#clicker:active { 
+    transform: scale(0.95); 
+    box-shadow: 0 2px #1565C0;
+}
 
-/* Onglets */
-#tabs { display: flex; gap: 10px; }
+/* --- Onglets --- */
+#tabs { display: flex; gap: 10px; margin-top: 10px; }
+
 .tab {
     background-color: #333;
     padding: 10px 15px;
     border-radius: 8px;
     cursor: pointer;
+    transition: 0.3s;
+    border: 1px solid #555;
 }
-.tab.active { background-color: #2196F3; }
-.tab-content { display: none; width: 400px; padding-top: 20px; }
+
+.tab.active { 
+    background-color: #2196F3; 
+    border-color: #fff;
+}
+
+.tab-content { 
+    display: none; 
+    width: 100%; 
+    min-height: 300px;
+    background: rgba(0,0,0,0.2);
+    padding: 20px;
+    border-radius: 10px;
+}
+
 .tab-content.active { display: block; }
 
-
+/* --- Boutique (Menu Latéral Droit) --- */
 #shop {
-    position: fixed; top: 0; right: 0; height: 100vh;
-    background-color: #333; padding: 20px; width: 280px;
-    overflow-y: auto; text-align: left;
+    position: fixed; 
+    top: 0; 
+    right: 0; 
+    height: 100vh;
+    background-color: #1e1e1e; 
+    padding: 20px; 
+    width: 280px;
+    overflow-y: auto; 
+    text-align: left;
+    border-left: 3px solid #444;
 }
+
+#shop h2 { text-align: center; color: #4CAF50; }
 
 .upgrade {
-    margin: 10px 0; padding: 12px; background: #4CAF50;
-    color: white; border: none; border-radius: 8px; cursor: pointer;
-    width: 100%; display: flex; flex-direction: column;
+    margin: 10px 0; 
+    padding: 12px; 
+    background: #4CAF50;
+    color: white; 
+    border: none; 
+    border-radius: 8px; 
+    cursor: pointer;
+    width: 100%; 
+    display: flex; 
+    flex-direction: column;
+    transition: 0.2s;
 }
 
-.upgrade:disabled { background-color: #757575; opacity: 0.6; cursor: not-allowed; }
+.upgrade:hover:not(:disabled) { background: #45a049; filter: brightness(1.1); }
 
-.upgrade-info { font-size: 11px; color: #ddd; margin-top: 4px; }
+.upgrade:disabled { 
+    background-color: #555; 
+    opacity: 0.6; 
+    cursor: not-allowed; 
+}
 
-#progress { width: 100%; height: 12px; background: #222; border-radius: 6px; margin: 10px 0; }
-#progress-bar { height: 100%; width: 0%; background: #FF9800; border-radius: 6px; transition: 0.4s; }
+.upgrade-info { font-size: 11px; color: #eee; margin-top: 4px; font-style: italic; }
+
+/* --- Casino et Machine à Sous --- */
+#casinoTab {
+    border: 2px dashed gold;
+}
+
+.casino-controls input {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    margin-right: 5px;
+    width: 120px;
+}
+
+#slot-machine {
+    background: #1a1a1a;
+    border: 4px solid #ffd700;
+    border-radius: 15px;
+    padding: 20px;
+    margin: 20px auto;
+    width: fit-content;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3), inset 0 0 10px #000;
+    display: flex;
+    gap: 15px;
+}
+
+#slot-machine span {
+    display: inline-block;
+    background: #fff;
+    color: #000;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    font-size: 35px;
+    border-radius: 8px;
+    text-align: center;
+    border: 2px solid #555;
+    box-shadow: inset 0 4px 5px rgba(0,0,0,0.5);
+}
+
+.spinning {
+    animation: shake 0.1s infinite;
+    filter: blur(1px);
+    opacity: 0.8;
+}
+
+@keyframes shake {
+    0% { transform: translateY(-2px); }
+    50% { transform: translateY(2px); }
+    100% { transform: translateY(-2px); }
+}
+
+#slot-trigger {
+    background: linear-gradient(180deg, #ff4e50, #f9d423);
+    color: #000;
+    font-weight: bold;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px #b8860b;
+    margin-top: 10px;
+}
+
+/* --- Barre de Progression et Notifs --- */
+#progress { width: 100%; height: 12px; background: #222; border-radius: 6px; margin: 15px 0; overflow: hidden; }
+#progress-bar { height: 100%; width: 0%; background: linear-gradient(90deg, #FF9800, #F44336); transition: 0.4s; }
 
 #notification {
-    position: fixed; top: 20px; background: #4CAF50; padding: 10px 20px;
-    border-radius: 5px; opacity: 0; transition: 0.5s; z-index: 99;
+    position: fixed; 
+    top: 20px; 
+    left: 50%;
+    transform: translateX(-50%);
+    background: #4CAF50; 
+    padding: 12px 25px;
+    border-radius: 8px; 
+    opacity: 0; 
+    transition: 0.5s; 
+    z-index: 100;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    pointer-events: none;
 }
-#notification.show { opacity: 1; }
+#notification.show { opacity: 1; top: 40px; }
 
-.btn-opt { padding: 10px; margin: 5px; border: none; border-radius: 5px; cursor: pointer; }
-.btn-opt.reset { background: #f44336; color: white; }
+/* --- Options --- */
+.btn-opt { padding: 10px 20px; margin: 5px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
+.btn-opt.reset { background: #f44336; color: white; margin-top: 20px; }
+.btn-opt.reset:hover { background: #d32f2f; }
 
-
-.btn-opt.reset { background: #f44336; color: white; }
+/* --- Responsive (Mobile) --- */
+@media (max-width: 900px) {
+    body { padding-right: 0; flex-direction: column; height: auto; }
+    #shop { position: relative; width: 100%; height: auto; border-left: none; border-top: 3px solid #444; }
+    .tab-content { width: 90%; }
+}
