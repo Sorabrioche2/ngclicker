@@ -60,7 +60,7 @@
                 </div>
                 <div class="casino-controls">
                     <p>Coût : 500 ressources</p>
-                    <button id="slot-trigger">Tirer le levier !</button>
+                    <button id="slot-trigger" class="btn-opt">Tirer le levier !</button>
                 </div>
                 <div class="payout-table">
                     <h4>Gains :</h4>
@@ -69,6 +69,50 @@
                         <li>Paire (ex: 💎💎❓) : x2</li>
                     </ul>
                 </div>
+            </div>
+
+            <hr>
+
+            <div class="casino-section">
+                <h3>🃏 Blackjack</h3>
+                <p>Mise fixe : <strong>1000</strong> ressources</p>
+                
+                <div id="bj-board" style="display:none;">
+                    <div class="bj-zone">
+                        <p>Banque (Score: <span id="dealer-score">?</span>)</p>
+                        <div id="dealer-hand"></div>
+                    </div>
+                    <div class="bj-zone">
+                        <p>Ta main (Score: <span id="player-score">0</span>)</p>
+                        <div id="player-hand"></div>
+                    </div>
+                </div>
+
+                <div class="casino-controls">
+                    <button id="bj-start" class="btn-opt">Jouer au Blackjack</button>
+                    <div id="bj-actions" style="display:none;">
+                        <button id="bj-hit" class="btn-opt" style="background: #2196F3;">Tirer</button>
+                        <button id="bj-stay" class="btn-opt" style="background: #4CAF50;">Rester</button>
+                    </div>
+                </div>
+                <p id="bj-result"></p>
+            </div>
+
+            <hr>
+
+            <div class="casino-section">
+                <h3>🎡 Roue de la Fortune</h3>
+                <p>Coût : <strong>1000</strong> ressources</p>
+                
+                <div class="wheel-container">
+                    <div class="wheel-pointer"></div>
+                    <div id="wheel" class="wheel"></div>
+                </div>
+
+                <div class="casino-controls">
+                    <button id="wheel-spin" class="btn-opt" style="background: #9c27b0;">Lancer la Roue !</button>
+                </div>
+                <p id="wheel-result"></p>
             </div>
         </div>
 
