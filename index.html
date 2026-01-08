@@ -14,7 +14,7 @@
     <div class="container">
         <div id="game">
             <h1>NationGlory</h1>
-            <div>Ressources : <span id="score">0</span></div>
+            <div>Ressources : <strong id="score">0</strong></div>
             <div>Gain/clic : <span id="clickPwr">1</span></div>
             <div>Gain/s : <span id="rate">0</span></div>
             <div>XP : <span id="xp">0</span></div>
@@ -25,23 +25,51 @@
         <div id="tabs">
             <div class="tab active" data-tab="statsTab">Stats</div>
             <div class="tab" data-tab="achievementsTab">Succès</div>
-            <div class="tab" data-tab="settingsTab">Options</div>
             <div class="tab" data-tab="casinoTab">Casino</div>
+            <div class="tab" data-tab="settingsTab">Options</div>
         </div>
-        <div id="casinoTab" class="tab-content">
-            <h2>🎰 Casino NationGlory</h2>
-            <p>Misez vos ressources pour tenter de doubler !</p>
-            <div class="casino-controls">
-           <input type="number" id="betAmount" placeholder="Montant à miser" min="1">
-        <button class="btn-opt" id="gambleButton">Parier (50% de chance)</button>
-    </div>
-    <p id="casinoResult"></p>
-</div>
+
         <div id="statsTab" class="tab-content active">
             <p>XP : <span id="xpStat">0</span></p>
             <p>Clics totaux : <span id="totalClicks">0</span></p>
             <p>Total miné : <span id="totalMined">0</span></p>
             <canvas id="statsChart"></canvas>
+        </div>
+
+        <div id="casinoTab" class="tab-content">
+            <h2>🎰 Casino NationGlory</h2>
+            
+            <div class="casino-section">
+                <h3>Pari Simple</h3>
+                <p>Misez vos ressources pour tenter de doubler !</p>
+                <div class="casino-controls">
+                    <input type="number" id="betAmount" placeholder="Montant" min="1">
+                    <button class="btn-opt" id="gambleButton">Parier (50/50)</button>
+                </div>
+                <p id="casinoResult"></p>
+            </div>
+
+            <hr>
+
+            <div class="casino-section">
+                <h3>Machine à Sous</h3>
+                <div id="slot-machine">
+                    <span id="slot1">❓</span>
+                    <span id="slot2">❓</span>
+                    <span id="slot3">❓</span>
+                </div>
+                <div class="casino-controls">
+                    <p>Coût : 500 ressources</p>
+                    <button id="slot-trigger">Tirer le levier !</button>
+                </div>
+                <div class="payout-table">
+                    <h4>Gains :</h4>
+                    <ul>
+                        <li>💎💎💎 : x50 | 💰💰💰 : x20</li>
+                        <li>Paire (ex: 💎💎❓) : x2</li>
+                    </ul>
+                </div>
+            </div>
         </div>
 
         <div id="achievementsTab" class="tab-content">
@@ -52,34 +80,35 @@
         <div id="settingsTab" class="tab-content">
             <button class="btn-opt" id="saveGameButton">Sauvegarder</button>
             <button class="btn-opt" id="loadGameButton">Charger</button>
-            <button class="btn-opt reset" id="resetGameButton">Réinitialiser</button>
+            <br>
+            <button class="btn-opt reset" id="resetGameButton">Réinitialiser la partie</button>
         </div>
 
         <div id="shop">
             <h2>Boutique</h2>
             <button class="upgrade" id="pickaxe">
                 Pioche onyx (Coût: <span id="pickaxeCost">50</span>)
-                <span class="upgrade-info">Clic +1 (Niveau: <span id="pickaxeLevel">0</span>)</span>
+                <span class="upgrade-info">Clic +1 (Niv: <span id="pickaxeLevel">0</span>)</span>
             </button>
             <button class="upgrade" id="soldier">
                 Armure Diamant (Coût: <span id="soldierCost">100</span>)
-                <span class="upgrade-info">+10/s (Niveau: <span id="soldierLevel">0</span>)</span>
+                <span class="upgrade-info">+10/s (Niv: <span id="soldierLevel">0</span>)</span>
             </button>
             <button class="upgrade" id="tank">
                 Prototype Clair (Coût: <span id="tankCost">500</span>)
-                <span class="upgrade-info">+50/s (Niveau: <span id="tankLevel">0</span>)</span>
+                <span class="upgrade-info">+50/s (Niv: <span id="tankLevel">0</span>)</span>
             </button>
             <button class="upgrade" id="plane">
                 Prototype Sombre (Coût: <span id="planeCost">2000</span>)
-                <span class="upgrade-info">+200/s (Niveau: <span id="planeLevel">0</span>)</span>
+                <span class="upgrade-info">+200/s (Niv: <span id="planeLevel">0</span>)</span>
             </button>
             <button class="upgrade" id="commandCenter">
-                Armur en eco desh (Coût: <span id="commandCenterCost">5000</span>)
-                <span class="upgrade-info">+500/s (Niveau: <span id="commandCenterLevel">0</span>)</span>
+                Armure Eco Desh (Coût: <span id="commandCenterCost">5000</span>)
+                <span class="upgrade-info">+500/s (Niv: <span id="commandCenterLevel">0</span>)</span>
             </button>
             <button class="upgrade" id="militaryBase">
-                Armur solidetech (Coût: <span id="militaryBaseCost">10000</span>)
-                <span class="upgrade-info">1000/s (Niveau: <span id="militaryBaseLevel">0</span>)</span>
+                Armure Solidetech (Coût: <span id="militaryBaseCost">10000</span>)
+                <span class="upgrade-info">1000/s (Niv: <span id="militaryBaseLevel">0</span>)</span>
             </button>
         </div>
     </div>
@@ -87,4 +116,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-
